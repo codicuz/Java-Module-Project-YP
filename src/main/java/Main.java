@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -6,12 +7,17 @@ public class Main {
         int speed;
         while (true) {
             System.out.printf("Введите скорость машины %d\n", count);
-            speed = scanner.nextInt();
+            try {
+                speed = scanner.nextInt();
 
-            if (speed > 0 && speed <= 250) {
-                break;
-            } else {
+                if (speed > 0 && speed <= 250) {
+                    break;
+                } else {
+                    System.out.println("Неправильная скорость");
+                }
+            } catch (InputMismatchException e) {
                 System.out.println("Неправильная скорость");
+                scanner.nextLine();
             }
         }
         return speed;
